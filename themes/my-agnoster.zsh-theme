@@ -185,6 +185,23 @@ prompt_hg() {
   fi
 }
 
+# svn stuff
+prompt_svn() {
+  local rev branch
+  if in_svn; then
+    rev=$(svn_get_rev_nr)
+    branch=$(svn_get_branch_name)
+    if [[ $(svn_dirty_choose_pwd 1 0) -eq 1 ]]; then
+      prompt_segment yellow black
+      echo -n "$rev@$branch"
+      echo -n "±"
+    else
+      prompt_segment green black
+      echo -n "$rev@$branch"
+    fi
+  fi
+}
+
 # Dir: current working directory
 prompt_dir() {
   prompt_segment blue black '%1~'
@@ -222,6 +239,7 @@ build_prompt() {
   prompt_git
   prompt_bzr
   prompt_hg
+	prompt_svn
   prompt_end
 }
 
