@@ -239,7 +239,7 @@ build_prompt() {
   prompt_git
   prompt_bzr
   prompt_hg
-	prompt_svn
+  prompt_svn
   prompt_end
 }
 
